@@ -69,7 +69,7 @@ Sinta-se à vontade para **clonar, modificar e aprimorar**.
 ## 🧑 Autor
 
 **Lucas Trajano** - Estudante de ADS
-[GitHub](https://github.com/seuusuario)
+[GitHub](https://github.com/CoddeLk)
 
 ---
 
