@@ -5,30 +5,60 @@ public class CartuchoDeTinta {
     private double nivelAtualMl;
     private double capacidadeMl;
 
-    public CartuchoDeTinta(String codigo, String cor, double capacidadeMl) {
+    public CartuchoDeTinta(String codigo, String cor, int capacidadeMl) {
         this.codigo = codigo;
         this.cor = cor;
         this.capacidadeMl = capacidadeMl;
         this.nivelAtualMl = capacidadeMl;
     }
 
+public void consumir (double ml) {
 
-    public void usarOuReabastecer(double ml) {
-        if (ml > 0) {
-            nivelAtualMl = Math.max(nivelAtualMl - ml, 0);
-            System.out.println("Consumidos " + ml + "ml. Nível atual: " + nivelAtualMl + "ml");
-        } else if (ml < 0) {
-            double Reabastecido = -ml;
-            nivelAtualMl = Math.min(nivelAtualMl + Reabastecido, capacidadeMl);
-            System.out.println("Reabastecidos " + Reabastecido + " ml. Nível atual: " + nivelAtualMl + " ml");
+        if (ml <= 0) {
+            System.out.println("Quantidade invalida para consumo. ");
+            return;
         }
+        nivelAtualMl = Math.max (nivelAtualMl - ml, 0);
+        System.out.println("Consumidos " + ml + " ml. Nível atual: " + nivelAtualMl + " ml");
+    }
+    public void reabastecer (double ml){
+        if (ml <=0){
+            System.out.println("Quantidade inválida para reabastecimento.");
+            return;
+        }
+        nivelAtualMl = Math.min (nivelAtualMl + ml, capacidadeMl);
+        System.out.println("Reabastecidos " + ml + " ml. Nível atual: " + nivelAtualMl + " ml");
     }
 
 
     public void exibirInformacoes() {
         double percentual = (nivelAtualMl / capacidadeMl) * 100;
+        System.out.println("\n🖨️  Cartucho de Tinta");
+        System.out.println("----------------------------");
         System.out.println("Código: " + codigo);
         System.out.println("Cor: " + cor);
         System.out.println("Nível atual: " + nivelAtualMl + " ml (" + String.format("%.2f", percentual) + "%)");
+        System.out.println("----------------------------");
     }
+    public boolean estarVazio () { return nivelAtualMl == 0; }
+    public boolean estarCheio () { return nivelAtualMl == capacidadeMl; }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+    public double getCapacidadeMl() {
+        return capacidadeMl;
+    }
+    public double getNivelAtualMl(){
+        return nivelAtualMl;
+    }
+
+
 }
+
+
+
