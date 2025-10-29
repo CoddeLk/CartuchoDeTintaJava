@@ -1,0 +1,54 @@
+public class TesteCartucho {
+    public static void main(String[] args) {
+
+        CartuchoDeTinta cartucho = new CartuchoDeTinta("CT001", "Preto", 100);
+
+        System.out.println("✨ Sistema de Controle de Cartuchos ✨");
+        System.out.println("=====================================");
+
+        exibirStatus(cartucho);
+
+        // Consumindo tinta
+        System.out.println("\n💥 Consumindo 20ml...");
+        cartucho.consumir(20);
+        exibirStatus(cartucho);
+
+        System.out.println("\n💥 Consumindo 40ml...");
+        cartucho.consumir(40);
+        exibirStatus(cartucho);
+
+        // Reabastecendo tinta
+        System.out.println("\n💧 Reabastecendo 30ml...");
+        cartucho.reabastecer(30);
+        exibirStatus(cartucho);
+
+        System.out.println("\n💧 Reabastecendo 50ml...");
+        cartucho.reabastecer(50);
+        exibirStatus(cartucho);
+
+        System.out.println("\n🎯 Operações finalizadas!");
+    }
+
+    private static void exibirStatus(CartuchoDeTinta cartucho) {
+        cartucho.exibirInformacoes();
+        desenharBarra(cartucho);
+    }
+
+    private static void desenharBarra(CartuchoDeTinta cartucho) {
+        int totalBlocos = 20; // comprimento da barra
+        int blocosCheios = (int) Math.round((cartucho.getNivelAtualMl() / cartucho.getCapacidadeMl()) * totalBlocos);
+
+        StringBuilder barra = new StringBuilder();
+        barra.append("[");
+        for (int i = 0; i < totalBlocos; i++) {
+            if (i < blocosCheios) {
+                barra.append("█"); // bloco cheio
+            } else {
+                barra.append(" "); // bloco vazio
+            }
+        }
+        barra.append("]");
+
+        System.out.println("Nível visual: " + barra.toString());
+    }
+}
